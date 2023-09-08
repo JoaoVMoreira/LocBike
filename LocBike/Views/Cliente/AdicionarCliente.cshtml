@@ -1,0 +1,33 @@
+﻿@model ClienteModel
+@{
+    ViewData["Title"] = "Adicionar Cliente";
+}
+
+<div class="text-center">
+    <form asp-controller="Cliente" asp-action="Criar" method="post">
+        <h1 class="display-4">Cadastrar Cliente</h1>
+        <a type="button" class="btn btn-primary btn-lg" asp-controller="Cliente" asp-action="Index">X</a>
+
+        <div class="input-group mb-3">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" asp-for="Nome">
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="telefone">Telefone</label>
+            <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" asp-for="Telefone">
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" asp-for="Endereco">
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="dataNascimento">Data de Nascimento</label>
+            <input type="datetime" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" asp-for="DataNascimento">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">CONFIRMAR</button>
+    </form>
+</div>
