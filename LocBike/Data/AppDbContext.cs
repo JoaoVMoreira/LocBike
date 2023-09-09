@@ -9,5 +9,12 @@ namespace LocBike.Data
 
         public DbSet<ClienteModel> Cliente { get; set; }
         public DbSet<LocacaoModel> Locacao { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<LocacaoModel>().HasIndex(e => e.NomeCliente).IsUnique();
+        }
     }
 }

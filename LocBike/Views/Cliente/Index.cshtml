@@ -6,7 +6,16 @@
 <div class="text-center">
     <h1 class="display-4">Clientes</h1>
 
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark" id="table-clientes">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Aniversário</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
         <tbody>
             @if(Model != null && Model.Any())
             {
@@ -15,6 +24,8 @@
                     <tr>
                         <td>@cliente.Nome</td>
                         <td>@cliente.Telefone</td>
+                        <td>@cliente.Endereco</td>
+                        <td>@cliente.DataNascimento</td>
                         <td>
                             <a type="button" class="btn btn-primary" asp-route-id="@cliente.Id" asp-area="" asp-controller="Cliente" asp-action="EditarCliente">Editar</a>
                             <a type="button" class="btn btn-danger" asp-route-id="@cliente.Id" asp-area="" asp-controller="Cliente" asp-action="ExcluirCliente">Excluir</a>
@@ -25,38 +36,7 @@
         </tbody>
     </table>
 
+    
     <a type="button" class="btn btn-primary" asp-area="" asp-controller="Cliente" asp-action="AdicionarCliente">+</a>
-
-    <div class="pesquisa-area">
-        <div class="input-group mb-3">
-            <label>Buscar por nome</label>
-            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Botão</button>
-            </div>
-        </div>
-        <div class="input-group mb-3">
-            <label>Buscar por telefone</label>
-            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Botão</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="atualiza-modal">
-        <h2>Cliente - Modal</h2>
-        <table class="table table-striped table-dark">
-            <tbody>
-                <tr>
-                    <td>Joao Vittor</td>
-                    <td>Estrada do Embu</td>
-                    <td>11 940028922</td>
-                    <td>04/07/2002</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
 
 </div>

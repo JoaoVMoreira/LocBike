@@ -23,6 +23,7 @@ namespace LocBike.Repositorio
             else
             {
                 locacao.ValorTotal = 0;
+                locacao.DataDevolucao = null;
             }
             
             _context.SaveChanges();

@@ -1,5 +1,8 @@
-﻿namespace LocBike.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace LocBike.Models
 {
+    [Index(nameof(NomeCliente), IsUnique = true)]
     public class LocacaoModel
     {
         public int Id { get; set; }
