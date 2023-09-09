@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LocacaoModel
+@{
     ViewData["Title"] = "Excluir Locação";
 }
 
@@ -8,5 +9,5 @@
     <P>Confirma a exclusão da locação?</P>
 
     <a type="button" class="btn btn-primary btn-lg" asp-controller="Locacao" asp-action="Index">CANCELAR</a>
-    <a type="button" class="btn btn-danger btn-lg">CONFIRMAR</a>
+    <a type="button" class="btn btn-danger btn-lg" asp-controller="Locacao" asp-route-id="@Model.Id" asp-action="Apagar">CONFIRMAR</a>
 </div>

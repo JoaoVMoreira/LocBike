@@ -23,14 +23,17 @@ namespace LocBike.Controllers
             return View();
         }
 
-        public IActionResult EditarCliente()
+        public IActionResult EditarCliente(int id)
         {
-            return View();
+            ClienteModel cliente = _repository.BuscarPorId(id);
+
+            return View(cliente);
         }
 
-        public IActionResult ExcluirCliente()
+        public IActionResult ExcluirCliente(int id)
         {
-            return View();
+            ClienteModel cliente = _repository.BuscarPorId(id);
+            return View(cliente);
         }
 
         [HttpPost]
@@ -39,6 +42,20 @@ namespace LocBike.Controllers
             _repository.Adicionar(cliente);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult Alterar(ClienteModel cliente)
+        {
+            _repository.Atualziar(cliente);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Apagar(int id)
+        {
+            _repository.Apagar(id);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

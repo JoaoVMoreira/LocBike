@@ -7,5 +7,10 @@ namespace LocBike.Repositorio.Interface
         ClienteModel Adicionar(ClienteModel cliente);
 
         List<ClienteModel> BuscarTodos();
+
+        ClienteModel BuscarPorId(int id);
+
+        ClienteModel Atualziar(ClienteModel cliente);
+        bool Apagar(int id);
     }
 }

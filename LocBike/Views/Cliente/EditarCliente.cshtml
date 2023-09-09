@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ClienteModel
+@{
     ViewData["Title"] = "Editar Cliente";
 }
 
@@ -6,25 +7,29 @@
     <h1 class="display-4">Nome Cliente</h1>
     <a type="button" class="btn btn-primary btn-lg" asp-controller="Cliente" asp-action="Index">X</a>
 
-    <div class="input-group mb-3">
-        <label>Nome</label>
-        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-    </div>
+    <form asp-controller="Cliente" asp-action="Alterar" method="post">
 
-    <div class="input-group mb-3">
-        <label>Telefone</label>
-        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-    </div>
+        <input type="hidden" asp-for="Id"/>
+        <div class="input-group mb-3">
+            <label>Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+        </div>
 
-    <div class="input-group mb-3">
-        <label>Email</label>
-        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-    </div>
+        <div class="input-group mb-3">
+            <label>Telefone</label>
+            <input type="text" asp-for="Telefone" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+        </div>
 
-    <div class="input-group mb-3">
-        <label>Data de Nascimento</label>
-        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-    </div>
+        <div class="input-group mb-3">
+            <label>Endereço</label>
+            <input type="text" asp-for="Endereco" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+        </div>
 
-    <a type="button" class="btn btn-primary btn-lg">CONFIRMAR</a>
+        <div class="input-group mb-3">
+            <label>Data de Nascimento</label>
+            <input type="text" asp-for="DataNascimento" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">CONFIRMAR</button>
+    </form>
 </div>
