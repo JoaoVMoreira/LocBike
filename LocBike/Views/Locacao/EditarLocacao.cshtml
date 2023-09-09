@@ -17,11 +17,13 @@
                     <option>@cliente.Nome</option>
                 }
             </select>
+            @Html.ValidationMessageFor(x => x.LocacaoModel.NomeCliente);
         </div>
 
         <div class="input-group mb-3">
             <label>Data Locação</label>
             <input type="datetime" asp-for="LocacaoModel.DataLocacao" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+            @Html.ValidationMessageFor(x => x.LocacaoModel.DataLocacao);
         </div>
 
         <div class="input-group mb-3">
@@ -32,6 +34,7 @@
         <div class="input-group mb-3">
             <label>Valor Diaria</label>
             <input type="text" asp-for="LocacaoModel.ValorDiaria" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+            @Html.ValidationMessageFor(x => x.LocacaoModel.ValorDiaria);
         </div>
 
         <button type="submit" class="btn btn-primary btn-lg">CONFIRMAR</button>

@@ -25,6 +25,7 @@ namespace LocBike.Controllers
 
         public IActionResult AdicionarLocacao()
         {
+
             LocacaoModel locacao = new LocacaoModel();
             List<ClienteModel> clientes = _clienteRepository.BuscarTodos();
             LocacaoViewModel locacaoViewModel = new LocacaoViewModel();
@@ -51,16 +52,62 @@ namespace LocBike.Controllers
         [HttpPost]
         public IActionResult Adicionar(LocacaoModel locacaoModel)
         {
-            LocacaoModel locacao = _repository.Adicionar(locacaoModel);
-            return RedirectToAction("Index");
+
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    LocacaoModel locacao = _repository.Adicionar(locacaoModel);
+                    TempData["MensagemSucesso"] = "Cadastro de locação realziado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                List<ClienteModel> clientes = _clienteRepository.BuscarTodos();
+                LocacaoViewModel locacaoViewModel = new LocacaoViewModel();
+                locacaoViewModel.clienteModels = clientes;
+                locacaoViewModel.LocacaoModel = locacaoModel;
+
+
+                return View("AdicionarLocacao", locacaoViewModel);
+            }
+            catch (Exception ex) {
+
+                TempData["MensagemErro"] = $"Oops... Ocorreu um erro: {ex.Message}";
+
+                List<ClienteModel> clientes = _clienteRepository.BuscarTodos();
+                LocacaoViewModel locacaoViewModel = new LocacaoViewModel();
+                locacaoViewModel.clienteModels = clientes;
+                locacaoViewModel.LocacaoModel = locacaoModel;
+
+
+                return View("AdicionarLocacao", locacaoViewModel);
+            }
+
         }
 
         [HttpPost]
         public IActionResult Alterar(LocacaoModel locacaoModel)
         {
-            _repository.Atualizar(locacaoModel);
-
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _repository.Atualizar(locacaoModel);
+                    TempData["MensagemSucesso"] = "Locação alterada com sucesso";
+                    return RedirectToAction("Index");
+                }
+                List<ClienteModel> clientes = _clienteRepository.BuscarTodos();
+                LocacaoViewModel locacaoViewModel = new LocacaoViewModel();
+                locacaoViewModel.clienteModels = clientes;
+                locacaoViewModel.LocacaoModel = locacaoModel;
+                return View("EditarLocacao", locacaoViewModel);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops... Ocorreu um erro ao atualizar a locação: {ex.Message}";
+                return View("Index");
+            }
         }
 
         public IActionResult Apagar(int id)

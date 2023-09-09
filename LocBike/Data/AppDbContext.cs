@@ -15,6 +15,7 @@ namespace LocBike.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<LocacaoModel>().HasIndex(e => e.NomeCliente).IsUnique();
+            //modelBuilder.Entity<ClienteModel>().HasIndex(e => e.Telefone).IsUnique();
         }
     }
 }
