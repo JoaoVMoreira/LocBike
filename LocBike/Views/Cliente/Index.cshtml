@@ -40,7 +40,7 @@
                         <td>@cliente.Nome</td>
                         <td>@cliente.Telefone</td>
                         <td>@cliente.Endereco</td>
-                        <td>@cliente.DataNascimento</td>
+                        <td>@cliente.DataNascimento.ToShortDateString()</td>
                         <td>
                             <a type="button" class="btn btn-primary" asp-route-id="@cliente.Id" asp-area="" asp-controller="Cliente" asp-action="EditarCliente">Editar</a>
                             <a type="button" class="btn btn-danger" asp-route-id="@cliente.Id" asp-area="" asp-controller="Cliente" asp-action="ExcluirCliente">Excluir</a>

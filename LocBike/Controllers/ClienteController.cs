@@ -80,7 +80,7 @@ namespace LocBike.Controllers
             }
             catch (Exception ex) {
                 TempData["MensagemErro"] = "Ops... Ocorreu um erro na alteração";
-                return View("EditarCliente", cliente);
+                return View("Index");
             }
             
         }

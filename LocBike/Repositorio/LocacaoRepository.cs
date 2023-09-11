@@ -13,19 +13,25 @@ namespace LocBike.Repositorio
         }
         public LocacaoModel Adicionar(LocacaoModel locacao)
         {
-            if(locacao.DataDevolucao != null)
-            {
-                _context.Locacao.Add(locacao);
-                TimeSpan diferenca = (TimeSpan)(locacao.DataDevolucao - locacao.DataLocacao);
-                double dias = diferenca.TotalDays;
-                locacao.ValorTotal = locacao.ValorDiaria * dias;
-            }
-            else
-            {
-                locacao.ValorTotal = 0;
-                locacao.DataDevolucao = null;
-            }
+            Console.WriteLine(locacao.DataDevolucao);
             
+            _context.Locacao.Add(locacao);
+            TimeSpan diferenca = (TimeSpan)(locacao.DataDevolucao - locacao.DataLocacao);
+            double dias = diferenca.TotalDays;
+            locacao.ValorTotal = locacao.ValorDiaria * dias;
+            
+            if(locacao.DataLocacao > locacao.DataDevolucao)
+            {
+                throw new Exception("A data de devolução não pode ser menor que a data de locação.");
+            }
+            if (locacao.DataLocacao == locacao.DataDevolucao)
+            {
+                throw new Exception("A data de devolução não pode ser igual a data de locação.");
+            }
+            if (locacao.DataLocacao > DateTime.Now)
+            {
+                throw new Exception("Data de locação inválida");
+            }
             _context.SaveChanges();
             return locacao;
         }
@@ -45,6 +51,18 @@ namespace LocBike.Repositorio
             LocacaoModel locacaoModel = BuscarPorId(locacao.Id);
             if(locacaoModel == null) { throw new Exception("Locação não localizada"); }
 
+            if (locacao.DataLocacao > locacao.DataDevolucao)
+            {
+                throw new Exception("A data de devolução não pode ser menor que a data de locação.");
+            }
+            if (locacao.DataLocacao == locacao.DataDevolucao)
+            {
+                throw new Exception("A data de devolução não pode ser igual a data de locação.");
+            }
+            if(locacao.DataLocacao > DateTime.Now)
+            {
+                throw new Exception("Data de locação inválida");
+            }
             locacaoModel.NomeCliente = locacao.NomeCliente;
             locacaoModel.DataLocacao = locacao.DataLocacao;
             locacaoModel.DataDevolucao = locacao.DataDevolucao;
@@ -53,6 +71,8 @@ namespace LocBike.Repositorio
             TimeSpan diferenca = (TimeSpan)(locacao.DataDevolucao - locacao.DataLocacao);
             double dias = diferenca.TotalDays;
             locacaoModel.ValorTotal = locacao.ValorDiaria * dias;
+
+            
 
             _context.Locacao.Update(locacaoModel);
             _context.SaveChanges();

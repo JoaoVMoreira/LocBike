@@ -1,0 +1,19 @@
+﻿@model LocacaoModel
+
+@{
+    ViewData["Title"] = "Locação";
+}
+
+<div class="text-center">
+    <h1>Infos locação</h1>
+    <br /><br />
+    <ul class="list-group">
+        <li class="list-group-item active">@Model.NomeCliente</li>
+        <li class="list-group-item">@Model.DataLocacao.ToShortDateString()</li>
+        <li class="list-group-item">@Model.DataDevolucao.ToShortDateString()</li>
+        <li class="list-group-item">R$@Model.ValorDiaria.ToString("F")</li>
+        <li class="list-group-item">R$@Model.ValorTotal.ToString("F")</li>
+    </ul>
+    <br /><br />
+    <a type="button" class="btn btn-primary btn-lg" asp-controller="Locacao" asp-action="Index">Voltar</a>
+</div>

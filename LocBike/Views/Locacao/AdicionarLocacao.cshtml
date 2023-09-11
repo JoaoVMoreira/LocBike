@@ -4,10 +4,12 @@
 }
 
 <div class="text-center">
-
-    <h1 class="display-4">Cadastrar Locação</h1>
-    <a type="button" class="btn btn-primary btn-lg" asp-controller="Locacao" asp-action="Index">X</a>
     
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <a type="button" class=" btn btn-primary btn-sm" asp-controller="Locacao" asp-action="Index">X</a>
+    </div>
+    <h1 class="d-flex p-2 bd-highlight">Cadastrar Locação</h1>
+    <br/>
     <form asp-controller="Locacao" asp-action="Adicionar" method="post">
         <div class="input-group mb-3">
             <label>Cliente</label>
@@ -17,26 +19,26 @@
                         <option>@cliente.Nome</option>
                     }
             </select>
-            @Html.ValidationMessageFor(x => x.LocacaoModel.NomeCliente);
+            @Html.ValidationMessageFor(x => x.LocacaoModel.NomeCliente)
         </div>
 
         <div class="input-group mb-3">
             <label>Data Locação</label>
-            <input type="datetime" asp-for="LocacaoModel.DataLocacao" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-            @Html.ValidationMessageFor(x => x.LocacaoModel.DataLocacao);
+            <input type="date" asp-for="LocacaoModel.DataLocacao" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+            @Html.ValidationMessageFor(x => x.LocacaoModel.DataLocacao)
         </div>
 
         <div class="input-group mb-3">
             <label>Data Devolução</label>
-            <input type="datetime" asp-for="LocacaoModel.DataDevolucao" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input type="date" asp-for="LocacaoModel.DataDevolucao" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
 
         <div class="input-group mb-3">
             <label>Valor Diaria</label>
             <input type="text" asp-for="LocacaoModel.ValorDiaria" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-            @Html.ValidationMessageFor(x => x.LocacaoModel.ValorDiaria);
+            @Html.ValidationMessageFor(x => x.LocacaoModel.ValorDiaria)
         </div>
 
         <button type="submit" class="btn btn-primary btn-lg" >CONFIRMAR</button>
     </form>
-</div>
+</br>

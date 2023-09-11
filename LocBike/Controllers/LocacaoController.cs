@@ -19,6 +19,7 @@ namespace LocBike.Controllers
 
         public IActionResult Index()
         {
+            TempData["ModalList"] = null;
             List<LocacaoModel> locacoes = _repository.BuscarTodas();
             return View(locacoes);
         }
@@ -74,14 +75,8 @@ namespace LocBike.Controllers
             catch (Exception ex) {
 
                 TempData["MensagemErro"] = $"Oops... Ocorreu um erro: {ex.Message}";
-
-                List<ClienteModel> clientes = _clienteRepository.BuscarTodos();
-                LocacaoViewModel locacaoViewModel = new LocacaoViewModel();
-                locacaoViewModel.clienteModels = clientes;
-                locacaoViewModel.LocacaoModel = locacaoModel;
-
-
-                return View("AdicionarLocacao", locacaoViewModel);
+                List<LocacaoModel> locacoes = _repository.BuscarTodas();
+                return View("Index", locacoes);
             }
 
         }
@@ -106,7 +101,8 @@ namespace LocBike.Controllers
             catch (Exception ex)
             {
                 TempData["MensagemErro"] = $"Ops... Ocorreu um erro ao atualizar a locação: {ex.Message}";
-                return View("Index");
+                List<LocacaoModel> locacoes = _repository.BuscarTodas();
+                return View("Index", locacoes);
             }
         }
 
@@ -114,6 +110,19 @@ namespace LocBike.Controllers
         {
             _repository.Apagar(id);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult ShowList()
+        {
+            TempData["ModalList"] = "teste";
+            List<LocacaoModel> locacoes = _repository.BuscarTodas();
+            return View("Index", locacoes);
+        }
+
+        public IActionResult InfosLocacao(int id)
+        {
+            LocacaoModel locacao = _repository.BuscarPorId(id);
+            return View(locacao);
         }
     }
 }

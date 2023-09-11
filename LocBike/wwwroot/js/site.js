@@ -3,11 +3,6 @@
 
 // Write your JavaScript code.
 
-    $('.btn-info-cliente').click(function () {
-        $('#modalClientesUsuario').modal();
-    });
-
-
 $('#table-clientes').DataTable({
     "ordering": false,
     "paging": false,

@@ -16,7 +16,7 @@ namespace LocBike.Models
         public DateTime DataLocacao { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime? DataDevolucao { get; set; }
+        public DateTime DataDevolucao { get; set; }
 
         [Required(ErrorMessage = "Informe o valor da diária")]
         public double ValorDiaria { get; set; }

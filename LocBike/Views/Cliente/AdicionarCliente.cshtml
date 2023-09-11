@@ -4,9 +4,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Cadastrar Cliente</h1>
-    <a type="button" class="btn btn-primary btn-lg" asp-controller="Cliente" asp-action="Index">X</a>
 
+    <div class="d-flex flex-row-reverse bd-highlight">
+        <a type="button" class=" btn btn-primary btn-sm" asp-controller="Locacao" asp-action="Index">X</a>
+    </div>
+    <h1 class="d-flex p-2 bd-highlight">Cadastrar Cliente</h1>
+    <br />
     <form asp-controller="Cliente" asp-action="Criar" method="post">
 
         <div class="input-group mb-3">
@@ -29,7 +32,7 @@
 
         <div class="input-group mb-3">
             <label for="dataNascimento">Data de Nascimento</label>
-            <input type="datetime" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" asp-for="DataNascimento">
+            <input type="date" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" asp-for="DataNascimento">
             @Html.ValidationMessageFor(x => x.DataNascimento)
         </div>
 
